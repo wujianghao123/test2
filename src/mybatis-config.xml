@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties resource="db.properties"/>
+    <typeAliases>
+        <!--
+        typeAliases标签是为entity中的类起别名的有两种标签方式
+            第一种方式<typeAlias>标签 其中里面的type属性是要为那个entity包中的类起别名
+                               alias属性是别名叫什么
+             第二中方式<package>标签批量起别名
+                               别名是Mybatis默认给我们起好的，默认起的别名就是我们创建类是起的的类名并且不区分大小写
+  -->
+        <!--        <typeAlias type="com.wjh.entity.province" alias="pro"/>-->
+        <package name="com.wjh.entity"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--
+            映射文件mapper配置有三种方式：
+            第一种<mapper resource="com.wjh\dao\Province.xml"/>
+            利用mapper的resource属性设置映射文件.xml的路径进行配置
+            第二种方式<mapper class="com.wjh.dao.Province"/>
+            利用mapper的class属性 找到dao层接口的路径
+            第三种方式：批量注册<package name="com.wjh.dao"/>
+            name属性，只想到层包，表示在该包下的所有mapper映射文件自动注册。
+
+         -->
+<!--        <mapper resource="com.wjh\dao\Province.xml"/>-->
+        <package name="com.wjh.dao"></package>
+    </mappers>
+
+</configuration>

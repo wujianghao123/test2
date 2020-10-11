@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace命名空间
+                不同的mapper映射文件使用namespace作区分
+                不同的mapper映射文件所使用的namesapce的命名并不允许重复
+                mapper提供的标签有<insert><select><update><delete>
+  -->
+<mapper namespace="com.wjh.dao.Province">
+    <!--
+    parameterType是为sql语句传递的参数 类型和表中字段类型一致
+    resultType是从表查完数据返回的数据结果 类型是我们封装好的entity
+    -->
+    <select id="getid" parameterType="java.lang.Integer" resultType="com.wjh.entity.province" >
+        select * from province where id=#{id}
+ </select>
+
+    <!--
+        insert操作可以不写前面的字段 但是values后面必须写成#{id},#{name},#{jiancheng},#{shenghui}这样
+        insert标签里面没有resulttype 只有paramenterType
+    -->
+
+    <insert id="insert" parameterType="province">
+        insert into province values (#{id},#{name},#{jiancheng},#{shenghui})
+    </insert>
+    <select id="GetAll" resultType="province">
+        select * from province
+    </select>
+
+
+</mapper>
